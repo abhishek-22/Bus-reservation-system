@@ -1,0 +1,120 @@
+<!-- {% load static %} -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/icon.jpg' %}">
+
+    <title>Robust</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+  </head>
+  <body>
+  {% if messages %}
+{% for message in messages %}
+{% if message.tags == "error"%}
+<div class="alert alert-info warning-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="text-center">
+    <strong>Error!</strong>{{ message }} 
+    </div>
+</div>
+{% elif message.tags == "success" %}
+<div class="alert alert-info success-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="text-center">
+    <strong>Success!</strong>{{ message }} 
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="text-center">
+    <strong>Info!</strong>{{ message }} 
+    </div>
+</div>
+{% endif %}
+ {% endfor %}
+ {% endif %}
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'images/icon.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+          Robust
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item-active">
+              <a class="nav-link" href="{% url 'bookinghist' %}">Booking history</a>
+            </li>
+            <li class="nav-item-active">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            {% else %}
+            <li class="nav-item-active">
+              <a class="nav-link" href="{% url 'Login' %}">Login</a>
+            </li>
+            <li class="nav-item-active">
+              <a class="nav-link" href="{% url 'Signup' %}">Signup</a>
+            </li>
+            {% endif %}
+          </ul>
+          {% if user.is_authenticated %}
+          <span class="navbar-text">
+            Hello , {{user.first_name}}
+          </span>
+          <span class="nav-item">
+            <a  class="nav-link" href="{% url 'Logout' %}">Logout </a>
+          </span>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+
+ {% block content %}
+
+
+ {% endblock %}
+      
+<footer class="fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="{% url 'home' %"> Robust </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static 'js/holder.min.js' %}"></script>
+  </body>
+   
+</html>

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" id="bootstrap-css">
+<link href="{% static 'css/login.css'%}" rel="stylesheet">
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+         <div class="login-main-text">
+            <h2>User Registeration</h2>
+            <p>Register to book tickets.</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="register-form">
+            
+               <form method="POST">
+
+               {% csrf_token %}
+                  <div class="form-group">
+                     
+                        {{ form.username|as_crispy_field }}
+                      
+                  </div>
+                  <div class="form-group">
+                    
+                     {{ form.email|as_crispy_field }}
+                    
+                 </div>
+                 <div class="form-group">
+                    
+                     {{ form.first_name|as_crispy_field }}
+                    
+                 </div>
+                 <div class="form-group">
+                    
+                    {{ form.last_name|as_crispy_field }}
+                    
+                 </div>
+                 <div class="form-group">
+                    
+                      {{ form.password1|as_crispy_field }}
+                    
+                 </div>
+                  <div class="form-group">
+                     
+                      {{ form.password2|as_crispy_field }}
+                    
+                  </div>
+                  <button type="submit" class="btn btn-black">Register</button>
+                  
+               </form>
+            </div>
+         </div>
+      </div>
+      
+
+{% endblock %}

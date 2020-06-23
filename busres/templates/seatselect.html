@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content  %}
+<div class="card" style="width: 70rem; margin: 0 auto; margin-top: 3em;">
+  <div class="card-body">
+    <p class="card-text">
+    <b> Bus Name: </b> &ensp; {{ object.name }} &emsp; <b> From: </b> &ensp; {{ object.origin }} &emsp; <b> To:</b> &ensp; {{ object.destination }} &emsp;
+    <b>Date of Journey:</b> &ensp; {{ object.date }} &emsp; <b>  No of Seats Available: </b> &ensp; {{ object.seats }}
+</p>
+    <form method="GET" action="{% url 'bookcnf' object.id %}">
+  <div class="form-group">
+    <label for="seats">Choose no of seats:</label>
+    <select class="form-control" name="seats"id="seats">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+    <button type="submit" class="btn btn-lg btn-primary" >Submit</button>
+</form>
+  </div>
+</div>
+
+{% endblock %}

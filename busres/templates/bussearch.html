@@ -1,0 +1,66 @@
+
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block content  %}
+
+<style>
+body {
+  height: 100%;
+  background-color: #333;
+  background-image: url('https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1504&q=80');
+}
+.form-inline > * {
+  margin:0 auto;
+}
+.cover {
+  padding: 15rem ;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+</style>
+
+
+    <div class="text-center">
+
+        <main role="main" class="inner cover">
+          <h1 class="cover-heading">Ticket Details</h1>
+          <form method ="POST" class="form-inline" >
+          {% csrf_token %}
+            <div class="form-group">
+               <input type="text" name="q1" class="form-control" placeholder="From">
+            </div>
+            <div class="form-group">
+              <input type="text"  name="q2" class="form-control" placeholder="To">
+            </div>
+            <div class="form-group">
+              <input type="date" name="q3" class="form-control" placeholder="When">
+            </div>
+            
+            <div class="text-center">
+               <button type="submit" class="btn btn-lg btn-primary" >Submit</button>
+            </div>                    
+         </form>
+         
+               
+        </main>
+  
+        
+        
+  
+  
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+      <script src="../../../../assets/js/vendor/popper.min.js"></script> -->
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </div>
+
+
+
+{% endblock   %}
+   

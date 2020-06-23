@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block content  %}
+{% if object %}
+{% for obj in object %}
+<div class="card" style="width: 70rem; margin: 0 auto; margin-top: 3em;">
+  <div class="card-body">
+    <p class="card-text">
+    <b> Bus Name: </b> &ensp; {{ obj.bus.name }} &emsp; <b> From: </b> &ensp; {{ obj.bus.origin }} &emsp; <b> To:</b> &ensp; {{ obj.bus.destination }} &emsp;
+    <b>Date of Journey:</b> &ensp; {{ obj.bus.date }} &emsp; <b>  No of Passengers: </b> &ensp; {{ obj.nos }}
+</p>
+    <a href="{% url 'bookingcancel' obj.id %}" class="btn btn-primary float-right">Cancel ticket</a>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="card" style="width: 70rem; margin: 0 auto; margin-top: 3em;">
+  <div class="card-body">
+    <p class="card-text" style ="font-size: 30px; text-align: center;" >
+    No previous bookings available </p>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'busbooking' %}" class="btn btn-primary float-none">Search bus</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock  %}
