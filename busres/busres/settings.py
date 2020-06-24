@@ -136,8 +136,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL= 'home'
 LOGIN_URL= 'Login'
 
+#python -m smtpd -n -c DebuggingServer localhost:1025
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+
 
 #For production
 
