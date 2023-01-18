@@ -20,14 +20,30 @@ function importData() {
 
 function getCondition() {
   var sheet = SpreadsheetApp.getSheetByName("token");
-  var cell = sheet.getRange("A1");
-  var value = new Date(cell.getValue());
+  var cellA1 = sheet.getRange("A1");
+  var value = new Date(cellA1.getValue());
   var currentTime = new Date();
   var twentyHoursLater = new Date(currentTime.getTime() + 20*60*60*1000);
   
-  if (value < twentyHoursLater) {
-    return "token_1";
+  if (value < twentyHoursLater || !value) {
+    var url = "API_URL";
+    var headers = {
+      "username": "YOUR_USERNAME",
+      "password": "YOUR_PASSWORD"
+    };
+    var options = {
+      "headers": headers
+    };
+    var response = UrlFetchApp.fetch(url, options);
+    var json = response.getContentText();
+    var data = JSON.parse(json);
+    var date = new Date(data.date);
+    cellA1.setValue(date);
+    var cellB1 = sheet.getRange("B1");
+    cellB1.setValue(data.token);
+    return data.token;
   } else {
-    return "token_2";
+    var cellB1 = sheet.getRange("B1");
+    return cellB1.getValue();
   }
 }
