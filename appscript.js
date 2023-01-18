@@ -10,7 +10,7 @@ function importData() {
   var response = UrlFetchApp.fetch(url, options);
   var json = response.getContentText();
   var data = JSON.parse(json);
-  var sheet = SpreadsheetApp.getActiveSheet();
+  var sheet = SpreadsheetApp.getSheetByName("people_in_hall");
   
   for (var i = 0; i < data.length; i++) {
     var row = data[i];
@@ -19,7 +19,7 @@ function importData() {
 }
 
 function getCondition() {
-  var sheet = SpreadsheetApp.getActiveSheet();
+  var sheet = SpreadsheetApp.getSheetByName("token");
   var cell = sheet.getRange("A1");
   var value = new Date(cell.getValue());
   var currentTime = new Date();
